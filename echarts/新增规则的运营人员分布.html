@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>新增规则的运营人员分布</title>
+		<style type="text/css">
+			#main{
+				width: 900px;
+				height: 500px;
+			}
+		</style>
+		<script src="js/jquery-1.12.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>		
+	</head>
+	<body>
+		<div id="main"></div>
+		<script type="text/javascript">
+			$.get('json/datasets-2.json').done(function(arguments){
+				var data=arguments;			
+				var myChart = echarts.init(document.getElementById('main'));
+			// 绘制图表				
+				myChart.setOption({
+				    title: { 
+				    	text: '新增规则的运营人员分布',			    	
+				    	left: 'center',
+				    	link: 'https:www.baidu.com',
+				    	textStyle:{
+				    		color: '#000',
+				    		fontSize: 18,
+			    			fontWeight:'normal'
+				    	}
+				    },
+				    tooltip: {show:true},
+				    toolbox:{
+				    	show: true				    	
+				    },
+			        legend: {	            	
+		            	data: [
+			            	{
+							    name: '销量',
+							    // 强制设置图形为圆。
+							    icon: 'circle',
+							    // 设置文本为红色
+							    textStyle: {
+							        color: 'red'
+							    }
+							},
+							{
+							    name: '产量',
+							    // 强制设置图形为圆。
+							    icon: 'circle',
+							    // 设置文本为红色
+							    textStyle: {
+							        color: 'blue'
+							    }
+							}
+		            	],
+						left: 'center'
+		            },
+				    xAxis: {
+			        data: data.goods,
+			        axisLabel:{  
+                         interval:0,//横轴信息全部显示  
+                         rotate:20,//-30度角倾斜显示  
+                          textStyle: {
+                                color: '#000'
+                            }
+                    }  
+			    },
+				    yAxis: {},
+				    series: [{
+				        name: '栏位数量',
+				        type: 'bar',
+				        data: data.sell,
+				        barWidth : 30,//柱图宽度
+				        itemStyle:{
+				        	normal:{
+				        		color:'blue',
+				        		label : {
+				        			show: true,
+				        			position:'top',
+				        			distance:5,
+				        			color:'#000'
+				        		}
+				        	}
+				        }
+				    }]
+				});
+			})
+		</script>
+	</body>
+</html>

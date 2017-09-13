@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>栏位-规则-offer月度数据</title>
+		<style type="text/css">
+			#main{
+				width: 700px;
+				height: 500px;
+
+			}
+		</style>
+		<script src="js/jquery-1.12.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>		
+	</head>
+	<body>
+		<div id="main"></div>
+		<script type="text/javascript">
+			$.get('json/data.json').done(function(arguments){
+				var data=arguments;			
+				var myChart = echarts.init(document.getElementById('main'));
+			// 绘制图表				
+				myChart.setOption({
+				    title: { 
+				    	text: '栏位-规则-offer月度数据',			    	
+				    	left: 'center',
+				    	link: 'https:www.baidu.com',
+				    	textStyle:{
+				    		color: '#000',
+				    		fontSize: 18,
+				    		fontWeight:'normal'
+				    	}
+				    },
+				    tooltip: {
+				    	show:true				    	
+				    },
+				    toolbox:{
+				    	show: true		    					    	
+				    },
+			        legend: {			        	
+		            	data: ['栏位数量', '规则数量', 'offer数量'],
+		            	bottom:10
+		            },
+				    xAxis: {
+				        data: data.goods
+				    },
+				    yAxis: {},
+				    series: [{
+				        name: '栏位数量',
+				        type: 'bar',
+				        data: data.sell,
+				        barWidth : 80,//柱图宽度
+				        barGap:'300%',
+				        itemStyle:{
+				        	normal:{
+				        		color:'greenyellow'
+				        	}
+				        }//柱图颜色
+				    },{
+				    	name: '规则数量',
+				    	type: 'line',
+				    	data: data.product,
+				    	itemStyle : { normal: {label : {show: true}}}
+				    },{
+				    	name: 'offer数量',
+				    	type: 'line',
+				    	data: data.offer,
+				    	itemStyle : { normal: {label : {show: true}}}
+				    }]
+				});
+			})
+		</script>
+	</body>
+</html>

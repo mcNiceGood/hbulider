@@ -1,0 +1,14 @@
+{
+	"pie":[
+        {"value":84, "name":"手机银行"},
+        {"value":3, "name":"一网通"},
+        {"value":102, "name":"未知"}
+        
+    ],  
+    "show":[
+        {"name":"手机银行","icon": "rect"},
+        {"name":"一网通","icon": "rect"},
+        {"name":"未知","icon": "rect"}
+       
+    ]
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>新增规则渠道发布</title>
+		<style type="text/css">
+			#main{
+				width: 700px;
+				height: 500px;
+			}
+		</style>
+		<script src="js/jquery-1.12.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/echarts.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="main"></div>
+		<script type="text/javascript">
+			$.get('json/datas-1.json').done(function(arguments){
+				var data=arguments;			
+				var myChart = echarts.init(document.getElementById('main'));
+			// 绘制图表
+			myChart.setOption({
+				title:{
+					text: '新增规则渠道发布',					
+					'left':'center',
+					textStyle:{
+			    		color: '#000',
+			    		fontSize: 18,
+			    		fontWeight:'normal'
+			    	}
+				},
+				legend: {
+			    	show: true,
+			    	data: data.show,
+					left : 'left',
+					orient: 'vertical'
+			    },
+			     tooltip: {
+			    	show:true,
+			    	//应该显示什么文字
+			    	formatter: '{a}<br/>{b}:{c}<br/>{d}%'
+			    },
+			    color:['red','green','blue'],
+			    series : [
+			        {
+			            name: '新增规则渠道发布',
+			            type: 'pie',
+			            radius: '55%',
+			            data:data.pie,
+			            label : {
+						normal : {
+							formatter: '{b}:{c}: ({d}%)',
+							textStyle : {
+								fontWeight : 'normal',
+								fontSize : 15
+								}
+							}
+						}
+			        }
+			    ]
+				})
+			})
+			
+		</script>
+	</body>
+</html>
